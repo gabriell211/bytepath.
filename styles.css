@@ -8,3 +8,8 @@
 #install-dialog .dialog-actions .button{min-width:0;justify-content:center;text-align:center}
 #install-dialog .dialog-actions .button-primary{flex:1.4}
 #install-dialog .dialog-actions .button-ghost{flex:1}
+
+/* Janela inicial: ação principal clara e possibilidade de continuar sem instalar. */
+#install-dialog{width:min(430px,calc(100% - 28px))}
+#install-dialog .dialog-actions{align-items:stretch}
+#install-dialog .dialog-actions>.button{flex:1;min-width:135px}
