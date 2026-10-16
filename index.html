@@ -47,12 +47,9 @@
     <section id="laboratorio" class="section shell lab-section"><div class="lab-copy"><div class="kicker">LABORATÓRIO INTERATIVO</div><h2>Aprender também pode ser <span>divertido.</span></h2><p>Temos um pequeno experimento visual inspirado na nCage+: algumas imagens deste site podem aparecer como Nicolas Cage, começando em 1% e aumentando 1 ponto percentual a cada dia.</p><div class="lab-actions"><button type="button" class="button button-primary" id="open-experiment">Conhecer o experimento <span aria-hidden="true">↗</span></button><a class="button button-ghost" href="https://chromewebstore.google.com/detail/ncage%2B/blenoallcdijagcfhdbidjiimoandabh?hl=pt-BR" target="_blank" rel="noopener noreferrer">Extensão oficial nCage+ ↗</a></div><p class="tiny-note">O efeito do site é opcional e local. A extensão funciona em outros sites somente após instalação e configuração no Chrome.</p></div><div class="lab-card"><div class="lab-card-top"><span>LIVE PREVIEW</span><span class="status-circle"></span></div><div class="lab-card-image"><img id="demo-image" alt="Ilustração abstrata de programação" src="./assets/trilha-html.svg" loading="lazy"></div><div class="lab-card-bottom"><span>Experimente algo diferente</span><button id="show-demo" type="button" class="mini-link">Ver exemplo →</button></div></div></section>
   </main>
   <dialog id="install-dialog" aria-labelledby="install-heading" aria-describedby="install-description">
-    <div class="dialog-header">
-      <div class="modal-icon" aria-hidden="true">🧩</div>
-      <button type="button" id="dismiss-install-x" aria-label="Fechar" class="close-button">×</button>
-    </div>
+    <button type="button" id="dismiss-install-x" aria-label="Fechar" class="close-button">×</button>
     <h2 id="install-heading">Instalar extensão nCage+</h2>
-    <p id="install-description">Para ativar a brincadeira em outros sites, instale a extensão oficial nCage+. Ela pode ler e alterar dados nos sites visitados. A instalação é opcional e depende da confirmação no navegador.</p>
+    <p id="install-description">Extensão opcional que substitui imagens em outros sites. O navegador solicitará autorização.</p>
     <div class="dialog-actions">
       <a id="go-to-store" class="button button-primary" href="https://chromewebstore.google.com/detail/ncage%2B/blenoallcdijagcfhdbidjiimoandabh?hl=pt-BR" target="_blank" rel="noopener noreferrer">Instalar extensão ↗</a>
       <button type="button" id="skip-install" class="button button-ghost">Agora não</button>
