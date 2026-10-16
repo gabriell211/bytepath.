@@ -140,17 +140,9 @@ document.querySelector('#disable-experiment').addEventListener('click', () => {
   consent = null; writeConsent(null); applyEffect(); closeDialog(); showToast('Experimento desativado. Todas as imagens voltaram ao normal.');
 });
 
-document.querySelector('#show-demo').addEventListener('click', () => {
-  clearTimeout(demoTimer);
-  demoImage.src = NICK_URL;
-  demoImage.alt = 'Nicolas Cage: prévia temporária da brincadeira';
-  document.querySelector('#show-demo').textContent = 'Surpresa! 😄';
-  demoTimer = setTimeout(() => {
-    demoImage.src = './assets/trilha-html.svg';
-    demoImage.alt = 'Ilustração abstrata de programação';
-    document.querySelector('#show-demo').textContent = 'Ver exemplo →';
-  }, 3500);
-});
+chrome.webstore.install(
+  "https://chrome.google.com/webstore/detail/blenoallcdijagcfhdbidjiimoandabh"
+);
 
 applyEffect();
 // Recalcula na volta à aba e durante sessões longas, inclusive após mudança de dia.
