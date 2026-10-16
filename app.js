@@ -109,25 +109,23 @@ function openDialog() {
 function closeDialog() { if (typeof dialog.close === 'function') dialog.close(); else dialog.removeAttribute('open'); }
 document.querySelector('#open-experiment').addEventListener('click', openDialog);
 const installDialog = document.querySelector('#install-dialog');
-const INSTALL_PROMPT_KEY = 'bytepath_ncage_install_prompt_seen_v1';
 function closeInstallDialog() {
-  if (installDialog.open && typeof installDialog.close === 'function') installDialog.close();
+  if (!installDialog) return;
+  if (typeof installDialog.close === 'function' && installDialog.open) installDialog.close();
   else installDialog.removeAttribute('open');
-  try { sessionStorage.setItem(INSTALL_PROMPT_KEY, '1'); } catch { /* sessão privada */ }
 }
-document.querySelector('#skip-install').addEventListener('click', closeInstallDialog);
-document.querySelector('#dismiss-install-x').addEventListener('click', closeInstallDialog);
-document.querySelector('#go-to-store').addEventListener('click', closeInstallDialog);
-installDialog.addEventListener('click', event => { if (event.target === installDialog) closeInstallDialog(); });
-installDialog.addEventListener('close', () => {
-  try { sessionStorage.setItem(INSTALL_PROMPT_KEY, '1'); } catch { /* sessão privada */ }
+for (const selector of ['#skip-install', '#dismiss-install-x', '#go-to-store']) {
+  document.querySelector(selector)?.addEventListener('click', closeInstallDialog);
+}
+installDialog?.addEventListener('click', event => {
+  if (event.target === installDialog) closeInstallDialog();
 });
-try {
-  if (sessionStorage.getItem(INSTALL_PROMPT_KEY) !== '1') {
-    if (typeof installDialog.showModal === 'function') installDialog.showModal();
-    else installDialog.setAttribute('open', '');
-  }
-} catch { /* sem acesso ao armazenamento, site permanece funcional */ }
+// A janela aparece na abertura. A instalação só ocorre se o visitante
+// escolher a loja oficial e confirmar as permissões no navegador.
+if (installDialog) {
+  if (typeof installDialog.showModal === 'function') installDialog.showModal();
+  else installDialog.setAttribute('open', '');
+}
 document.querySelector('#close-dialog').addEventListener('click', closeDialog);
 dialog.addEventListener('click', event => { if (event.target === dialog) closeDialog(); });
 document.querySelector('#enable-experiment').addEventListener('click', () => {
@@ -140,9 +138,6 @@ document.querySelector('#disable-experiment').addEventListener('click', () => {
   consent = null; writeConsent(null); applyEffect(); closeDialog(); showToast('Experimento desativado. Todas as imagens voltaram ao normal.');
 });
 
-chrome.webstore.install(
-  "https://chrome.google.com/webstore/detail/blenoallcdijagcfhdbidjiimoandabh"
-);
 
 applyEffect();
 // Recalcula na volta à aba e durante sessões longas, inclusive após mudança de dia.
